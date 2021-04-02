@@ -20,6 +20,16 @@ export class CrewComponent implements OnInit {
   }
   
   add(memberName: string, isFirst: boolean) {
+    if (!memberName) {
+      alert('Must enter a name');
+      return -1;
+    }
+    for (const member of this.crew) {
+      if (member['name'].toLowerCase() === memberName.toLowerCase() ) {
+        alert('Already in crew');
+        return -1;
+      }
+    }
     this.crew.push({name: memberName, firstMission: isFirst});
   }
 
