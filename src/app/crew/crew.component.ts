@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+interface Candidate {
+  name: string;
+  photo: string;
+}
+
 @Component({
   selector: 'app-crew',
   templateUrl: './crew.component.html',
@@ -8,9 +13,9 @@ import { Component, OnInit } from '@angular/core';
 export class CrewComponent implements OnInit {
 
   inCrew: boolean = false;
-  crew: object[] = [];
+  crew: Candidate[] = [];
 
-  candidates: object[] = [
+  candidates: Candidate[] = [
     {name: "Sally Ride", photo: 'https://handlers.education.launchcode.org/static/images/sally-ride.jpg'},
     {name: "Mae Jemison", photo: 'https://handlers.education.launchcode.org/static/images/mae-jemison.jpg'},
     {name: "Ellen Ochoa", photo: 'https://handlers.education.launchcode.org/static/images/ellen-ochoa.jpg'},
@@ -25,5 +30,33 @@ export class CrewComponent implements OnInit {
   ngOnInit() { }
 
   // Code the 'addCrewMember' function here:
+  isInCrew(candidate: Candidate): boolean {
+    for (const testCandidate of this.crew) {
+      if (candidate.name === testCandidate.name) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  getCrewMemberIndex(candidate: Candidate): number {
+    let crewMemberIndex = -1; // assume not in crew
+    if (this.isInCrew(candidate)) {
+      for (let i = 0; i < this.crew.length; i++) {
+        if (candidate.name === this.crew[i].name) {
+          crewMemberIndex = i;
+        }
+      }
+    }
+    return crewMemberIndex;
+  }
+
+  addCrewMember(candidate: Candidate): void {
+    if (this.isInCrew(candidate)) {
+      this.crew.splice(this.getCrewMemberIndex(candidate), 1);
+    } else if (this.crew.length < 3) {
+      this.crew.push(candidate);
+    }
+  }
 
 }
