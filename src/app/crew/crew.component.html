@@ -6,9 +6,9 @@
 </div>
 <hr>
 <div class="displayBox">
-    <h3>Crew <!-- Add a span tag here to display 'Full' when the crew reaches 3. --></h3>
+    <h3>Crew <span *ngIf="crew.length === 3">Full</span></h3>
     <ol>
-        <li *ngFor="let astronaut of crew">{{astronaut.name}}</li>
+        <li *ngFor="let astronaut of crew" (mouseover)="selectedAstronaut = astronaut" (mouseout)="selectedAstronaut = null">{{astronaut.name}}</li>
     </ol>
-    <!-- Add an img tag here to display astronaut photos. -->
+    <img *ngIf="selectedAstronaut" src="{{ selectedAstronaut.photo }}">
 </div>

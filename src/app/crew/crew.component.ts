@@ -13,6 +13,7 @@ interface Candidate {
 export class CrewComponent implements OnInit {
 
   inCrew: boolean = false;
+  selectedAstronaut: Candidate = null;
   crew: Candidate[] = [];
 
   candidates: Candidate[] = [
