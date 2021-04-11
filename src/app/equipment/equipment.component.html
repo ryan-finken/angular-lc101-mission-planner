@@ -3,6 +3,7 @@
     <ol>
         <li *ngFor="let item of equipmentItems">
             <button (click)="addItem(item)" [disabled]="(cargoHold.length === maxItems) || (item.mass > (maximumAllowedMass - cargoMass)) || itemCountInHold(item) === 2" [class.active]="!((cargoHold.length === maxItems) || (item.mass > (maximumAllowedMass - cargoMass)) || itemCountInHold(item) === 2)">Add to Cargo Hold</button>
+            <!-- 330 chars?????? needs a function -->
             {{item.name}}, {{item.mass}} kg
         </li>
     </ol>

@@ -59,7 +59,6 @@ export class EquipmentComponent implements OnInit {
     for (let i = 0; i < this.cargoHold.length; i++) {
       if (this.cargoHold[i].name === item.name) {
         itemIndex = i;
-        break;
       }
     }
     return itemIndex;
